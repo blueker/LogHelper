@@ -11,7 +11,7 @@ namespace LogHelper
     /// <summary>
     /// log 记录组建
     /// </summary>
-    public class AdisonLog:ILogCommon
+    public class AdisonLog : ILogCommon
     {
         private static object Mux = "_LogInstance";
         private static object WriteMux = "_WriteMux";
@@ -94,7 +94,7 @@ namespace LogHelper
 
         private void WriteLogToStorage(LogLevel levelenum, string message)
         {
-            string filePath=string.Empty;
+            string filePath = string.Empty;
             switch (levelenum)
             {
                 case LogLevel.Debug: filePath = ConfigurationManager.AppSettings["debugPath"]; break;
@@ -102,7 +102,7 @@ namespace LogHelper
                 case LogLevel.Info: filePath = ConfigurationManager.AppSettings["infoPath"]; break;
             }
             if (string.IsNullOrEmpty(filePath))
-            {
+            { 
                 throw new Exception("文件路径(debugPath errorPath infoPath)配置不正确");
             }
             if (!Directory.Exists(filePath))
@@ -130,15 +130,15 @@ namespace LogHelper
     public interface ILogCommon
     {
         void ErrorLog(string error);
-        void ErrorLog(string userdescription, Exception ex); 
-        void DebugLog(string debug); 
+        void ErrorLog(string userdescription, Exception ex);
+        void DebugLog(string debug);
         void InfoLog(string info);
         void SetLogLevel(int level);
     }
 
     public enum LogLevel
-    { 
-        Debug=0,
+    {
+        Debug = 0,
         Info,
         Error
     }
